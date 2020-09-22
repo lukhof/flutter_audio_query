@@ -21,3 +21,5 @@ flutter:
       android:
         package: boaventura.com.devel.br.flutteraudioquery
         pluginClass: FlutterAudioQueryPlugin
+      ios:
+        pluginClass: FlutterAudioQueryPlugin
