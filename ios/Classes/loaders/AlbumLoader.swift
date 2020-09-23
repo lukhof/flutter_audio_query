@@ -67,13 +67,14 @@ class AlbumLoader {
             //get album name and ID
             let albumName = collection.items[0].albumTitle
             let albumID = collection.items[0].albumPersistentID
+            let albumArtist = collection.value(forProperty: MPMediaItemPropertyAlbumArtist) as? String
             
             let filterAlbumSongs: Set<MPMediaPropertyPredicate> = [MPMediaPropertyPredicate(value: albumName, forProperty: MPMediaItemPropertyAlbumTitle)]
             let allSongs = MPMediaQuery.init(filterPredicates: filterAlbumSongs)
             let numOfAlbumSongs = allSongs.collections?.count
             
             //add album to returning collection
-            albumsList.append(["album_art": "", "maxyear": "n/a", "album": albumName ?? "n/a", "minyear": "n/a","_id": String(albumID), "numsongs": String(numOfAlbumSongs ?? 0)])
+            albumsList.append(["album_art": "", "maxyear": "n/a", "album": albumName ?? "n/a", "minyear": "n/a","_id": String(albumID), "numsongs": String(numOfAlbumSongs ?? 0), "artist": String(albumArtist ?? "n/a")])
         }
         
         sortAlbumListAndReturn(result, sortType, albumsList)

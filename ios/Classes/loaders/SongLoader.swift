@@ -66,7 +66,7 @@ class SongLoader {
         for id in ids {
             //filter all songs for id == .persistentID and add song to allSongs
             let filterID: Set<MPMediaPropertyPredicate> = [MPMediaPropertyPredicate(value: UInt64(id), forProperty: MPMediaItemPropertyPersistentID), noCloudItems]
-            if let items = MPMediaQuery.init(filterPredicates: filterID).items{
+            if let items = MPMediaQuery.init(filterPredicates: filterID).items, MPMediaQuery.init(filterPredicates: filterID).items!.count > 0{
                     allSongs?.append(items[0])
             }
         }
@@ -103,8 +103,9 @@ class SongLoader {
             let songURI = song.assetURL?.absoluteString ?? "n/a"
             let songSize = "n/a"
             let songArtwork = ""
+            let songPodcast = song.podcastTitle != nil ? "true" : "false"
             //add song to returning collection
-            songsList.append(["album_id": songAlbumID, "artist_id": songArtistID, "artist": songArtistName, "album": songAlbumName, "title": songName, "_display_name": songName, "composer": songComposerName, "year": songYear, "track": songAlbumTrack, "duration": songDuration, "bookmark": songBookmark, "_data": songDataPath, "uri": songURI, "_size": songSize, "album_artwork": songArtwork, "is_music": "true" ])
+            songsList.append(["album_id": songAlbumID, "artist_id": songArtistID, "artist": songArtistName, "album": songAlbumName, "title": songName, "_display_name": songName, "composer": songComposerName, "year": songYear, "track": songAlbumTrack, "duration": songDuration, "bookmark": songBookmark, "_data": songDataPath, "uri": songURI, "_size": songSize, "album_artwork": songArtwork, "is_music": "true", "is_podcast": songPodcast ])
         }
         
         sortSongListAndReturn(result, sortType, songsList)
