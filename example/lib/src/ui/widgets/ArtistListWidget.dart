@@ -23,7 +23,7 @@ class ArtistListWidget extends StatelessWidget {
           ArtistInfo artist = artistList[index];
           return Stack(
             children: <Widget>[
-              (artist.artistArtPath == null)
+              (artist.artistArtPath != null)
                   ? FutureBuilder<Uint8List>(
                       future: audioQuery.getArtwork(
                           type: ResourceType.ARTIST, id: artist.id),

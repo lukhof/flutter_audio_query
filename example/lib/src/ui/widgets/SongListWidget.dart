@@ -87,7 +87,7 @@ class SongListWidget extends StatelessWidget {
                       height: .0,
                     ),
               imagePath: song.albumArtwork,
-              leading: (song.albumArtwork == null)
+              leading: (song.albumArtwork != null)
                   ? FutureBuilder<Uint8List>(
                       future: audioQuery.getArtwork(
                           type: ResourceType.SONG,

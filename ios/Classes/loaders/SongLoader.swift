@@ -89,7 +89,7 @@ class SongLoader {
         for song in allSongs! {
             //get song name and ID
             let songName = song.title ?? "n/a"
-            //let songID = String(song.persistentID)
+            let songID = String(song.persistentID)
             let songAlbumName = song.albumTitle ?? "n/a"
             let songAlbumID = String(song.albumPersistentID)
             let songArtistName = song.artist ?? "n/a"
@@ -105,7 +105,7 @@ class SongLoader {
             let songArtwork = ""
             let songPodcast = song.podcastTitle != nil ? "true" : "false"
             //add song to returning collection
-            songsList.append(["album_id": songAlbumID, "artist_id": songArtistID, "artist": songArtistName, "album": songAlbumName, "title": songName, "_display_name": songName, "composer": songComposerName, "year": songYear, "track": songAlbumTrack, "duration": songDuration, "bookmark": songBookmark, "_data": songDataPath, "uri": songURI, "_size": songSize, "album_artwork": songArtwork, "is_music": "true", "is_podcast": songPodcast ])
+            songsList.append(["album_id": songAlbumID, "artist_id": songArtistID, "artist": songArtistName, "album": songAlbumName, "title": songName, "_display_name": songName,"_id": songID ,"composer": songComposerName, "year": songYear, "track": songAlbumTrack, "duration": songDuration, "bookmark": songBookmark, "_data": songDataPath, "uri": songURI, "_size": songSize, "album_artwork": songArtwork, "is_music": "true", "is_podcast": songPodcast ])
         }
         
         sortSongListAndReturn(result, sortType, songsList)

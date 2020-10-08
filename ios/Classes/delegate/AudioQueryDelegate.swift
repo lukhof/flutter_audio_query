@@ -30,7 +30,7 @@ public class AudioQueryDelegate: AudioQueryDelegateProtocol {
     private var  m_songLoader: SongLoader;
     private var  m_genreLoader: GenreLoader;
     private var  m_playlistLoader: PlaylistLoader;
-    //private var  m_imageLoader: ImageLoader;*/
+    private var  m_imageLoader: ImageLoader;
     
     init(){
         m_artistLoader = ArtistLoader()
@@ -38,6 +38,7 @@ public class AudioQueryDelegate: AudioQueryDelegateProtocol {
         m_songLoader = SongLoader()
         m_genreLoader = GenreLoader()
         m_playlistLoader = PlaylistLoader()
+        m_imageLoader = ImageLoader()
         
         if #available(iOS 9.3, *) {
             MPMediaLibrary.requestAuthorization {
@@ -365,6 +366,11 @@ public class AudioQueryDelegate: AudioQueryDelegateProtocol {
 //                            new Size(width, height));
 //                }
 //                else result.notImplemented();
+                let id = arguments!["id"] as! String
+                let width = arguments!["width"] as? Int
+                let height = arguments!["height"] as? Int
+                let type = arguments!["resource"] as? Int
+                m_imageLoader.getArtworkByID(result, id, type ?? 0, Double(width ?? 250), Double(height ?? 250))
                 print("getArtwork: \(arguments ?? ["args": "no args"])")
 
                 break;

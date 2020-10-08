@@ -29,7 +29,7 @@ class AlbumGridWidget extends StatelessWidget {
 
           return Stack(
             children: <Widget>[
-              (album.albumArt == null)
+              (album.albumArt != null)
                   ? FutureBuilder<Uint8List>(
                       future: audioQuery.getArtwork(
                           type: ResourceType.ALBUM, id: album.id),
@@ -49,7 +49,7 @@ class AlbumGridWidget extends StatelessWidget {
                           infoText:
                               ("Year: ${album.firstYear ?? album.lastYear ?? ""}"),
                           rawImage: snapshot.data,
-                          //backgroundImage: album.albumArt,
+                          backgroundImage: album.albumArt,
                         );
                       })
                   : CardItemWidget(

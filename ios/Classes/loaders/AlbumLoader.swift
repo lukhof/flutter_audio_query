@@ -72,9 +72,11 @@ class AlbumLoader {
             let filterAlbumSongs: Set<MPMediaPropertyPredicate> = [MPMediaPropertyPredicate(value: albumName, forProperty: MPMediaItemPropertyAlbumTitle)]
             let allSongs = MPMediaQuery.init(filterPredicates: filterAlbumSongs)
             let numOfAlbumSongs = allSongs.collections?.count
+            let albumArt = collection.value(forProperty: MPMediaItemPropertyArtwork) != nil ? "avaible" : ""
+            
             
             //add album to returning collection
-            albumsList.append(["album_art": "", "maxyear": "n/a", "album": albumName ?? "n/a", "minyear": "n/a","_id": String(albumID), "numsongs": String(numOfAlbumSongs ?? 0), "artist": String(albumArtist ?? "n/a")])
+            albumsList.append(["album_art": albumArt, "maxyear": "n/a", "album": albumName ?? "n/a", "minyear": "n/a","_id": String(albumID), "numsongs": String(numOfAlbumSongs ?? 0), "artist": String(albumArtist ?? "n/a")])
         }
         
         sortAlbumListAndReturn(result, sortType, albumsList)
