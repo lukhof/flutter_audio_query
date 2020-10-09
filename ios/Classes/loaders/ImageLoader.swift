@@ -40,14 +40,20 @@ class ImageLoader {
                 return
             }
             
-            let size = MemoryLayout<UInt8>.stride
-            let bytes = data.withUnsafeBytes {
+            //not necessary
+            //let size = MemoryLayout<UInt8>.stride
+            /*var byteBuffer: [UInt8] = []
+            data.withUnsafeBytes {
+                byteBuffer.append(contentsOf: $0)
+            }*/
+            /*let bytes = data.withUnsafeBytes {
                 Array(UnsafeBufferPointer<UInt8>(start: $0, count: data.count / size))
-            }
+            }*/
             
-            let resultMap = ["image": bytes]
+            let resultMap = ["image": data]
             
             result(resultMap)
+        
         }
         
     }
