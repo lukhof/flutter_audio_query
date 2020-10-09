@@ -8,6 +8,7 @@
 import Foundation
 import MediaPlayer
 
+@available(iOS 9.3, *)
 public class AudioQueryDelegate: AudioQueryDelegateProtocol {
     //private let m_instance = AudioQueryDelegate()
     private let ERROR_CODE_PENDING_RESULT = "pending_result";
@@ -22,8 +23,7 @@ public class AudioQueryDelegate: AudioQueryDelegateProtocol {
     private var m_pendingCall: FlutterMethodCall?;
     private var m_pendingResult: FlutterResult?;
     
-    private var mediaQuery: MPMediaQuery?
-    private var avaibale: Bool = true
+    private var avaibale: Bool = false
 
     private var  m_artistLoader: ArtistLoader;
     private var  m_albumLoader: AlbumLoader;
@@ -40,15 +40,11 @@ public class AudioQueryDelegate: AudioQueryDelegateProtocol {
         m_playlistLoader = PlaylistLoader()
         m_imageLoader = ImageLoader()
         
-        if #available(iOS 9.3, *) {
-            MPMediaLibrary.requestAuthorization {
-                (status) in
-                if status == .authorized {
-                    self.mediaQuery = MPMediaQuery()
-                }
+        MPMediaLibrary.requestAuthorization {
+            (status) in
+            if status == .authorized {
+                self.avaibale = true
             }
-        } else {
-            avaibale = false
         }
     }
     
